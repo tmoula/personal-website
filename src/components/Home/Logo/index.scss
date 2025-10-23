@@ -1,0 +1,40 @@
+/* Circular portrait with bright glow + cooler reveal */
+
+.logo-portrait {
+  position: absolute;
+  top: 50%;
+  right: 30%;                 /* adjust to place it */
+  transform: translateY(-50%);
+  width: 320px;
+  height: 320px;
+  opacity: 0;                 /* GSAP fades in */
+  z-index: 0;
+
+  @media (max-width: 1200px) {
+    right: 6%;
+    width: 260px;
+    height: 260px;
+  }
+}
+
+.portrait-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* Slight zoom-out so your head/shoulders fit comfortably */
+.img-zoom {
+  transform: scale(0.92);     /* smaller => more zoomed out */
+  transform-origin: 50% 50%;
+  filter: saturate(1.06) contrast(1.04);
+}
+
+/* bright ring with glow */
+.glow-ring {
+  filter:
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.537))
+    drop-shadow(0 0 24px rgba(255, 217, 0, 0.408))
+    drop-shadow(0 8px 28px rgba(0,0,0,0.35));
+}

@@ -1,0 +1,115 @@
+.stage-cube-cont {
+  width: 50%;
+  height: 60%;
+  top: 0;
+  padding-top: 15%;
+  margin-left: 0;
+  position: absolute;
+  right: 0;
+  overflow: hidden;
+  perspective: 10000000000px; // helps keep rotation clean
+}
+
+.cubespinner {
+  animation-name: spincube;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 16s; // slowed down from 12s for smoother spin
+  transform-style: preserve-3d;
+  transform-origin: 100px 100px 0;
+  margin-left: calc(50% - 100px);
+
+  div {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.04);
+    text-align: center;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px 0px rgb(253, 255, 216);
+    border-radius: 10px;
+
+    svg {
+      width: 90px;
+      height: 90px;
+    }
+
+    img {
+      max-width: 70%;
+      max-height: 70%;
+      object-fit: contain;
+      background: transparent;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+      transition: transform 0.3s ease;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .face1 {
+    transform: translateZ(100px);
+    color: #2496ed; // Docker
+  }
+
+  .face2 {
+    transform: rotateY(90deg) translateZ(100px);
+    color: #3776ab; // Python
+  }
+
+  .face3 {
+    transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
+    color: #ea2d2e; // Java
+  }
+
+  .face4 {
+    transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
+    background-color: #00266400; // Trinity background (dark blue)
+    img {
+      max-width: 65%; // adjust scaling for Trinity
+    }
+  }
+
+  .face5 {
+    transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px);
+    background-color: #ffffff00; // EY background
+    img {
+      max-width: 55%; // EY is tall → scale down more
+    }
+  }
+
+  .face6 {
+    transform: rotateX(-90deg) translateZ(100px);
+    background-color: #ffffff00; // Navoy background (navy blue)
+    img {
+      max-width: 70%;
+    }
+  }
+}
+
+@keyframes spincube {
+  from,
+  to {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  16% {
+    transform: rotateY(-90deg) rotateZ(90deg);
+  }
+  33% {
+    transform: rotateY(-90deg) rotateX(90deg);
+  }
+  50% {
+    transform: rotateY(-180deg) rotateZ(90deg);
+  }
+  66% {
+    transform: rotateY(-270deg) rotateX(90deg);
+  }
+  83% {
+    transform: rotateX(90deg);
+  }
+}

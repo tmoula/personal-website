@@ -1,0 +1,197 @@
+/* ===== Contact-only theme variables (scoped) ===== */
+.container.contact-page {
+  /* local vars: only children of .contact-page can see these */
+  --bg: #022c43;
+  --panel: #08344a;
+  --accent: #ffd700;      /* gold for Contact only */
+  --p: #fff;
+  --text: #efefef;
+  --muted: #cfe3ec;
+
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;  /* more space to the left column */
+  gap: 32px;
+  align-items: start;
+  position: relative;
+}
+
+/* Prevent global img rules from breaking Leaflet tiles (safe to keep global) */
+.leaflet-container img { max-width: none !important; }
+
+/* ===== Left column ===== */
+.container.contact-page .text-zone { min-width: 320px; }
+.container.contact-pafe .text-zone h2{
+margin: 0 0 12px;
+  font-size: clamp(306px, 1500px, 64px);
+  line-height: 1.05;
+  color: var(--p);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+
+}
+
+.container.contact-page .text-zone h1 {
+  margin: 0 0 12px;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.05;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.container.contact-page .subtitle {
+  margin: 6px 0 18px;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 620px;
+  font-size: 20px;
+}
+
+/* ===== Form ===== */
+.container.contact-page .contact-form {
+  width: 100%;
+  color: var(--text);
+  margin: 0;
+}
+
+.container.contact-page .contact-form ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.container.contact-page .contact-form li:nth-child(1),
+.container.contact-page .contact-form li:nth-child(2),
+.container.contact-page .contact-form li:nth-child(3), /* Subject */
+.container.contact-page .contact-form li:nth-child(4), /* Message */
+.container.contact-page .contact-form li:nth-child(5)  /* Submit */
+{ grid-column: 1 / -1; }
+
+.container.contact-page .contact-form li {
+  opacity: 0;
+  animation: fadeIn 0.6s 0.4s forwards;
+}
+
+.container.contact-page .contact-form input[type='text'],
+.container.contact-page .contact-form input[type='email'],
+.container.contact-page .contact-form textarea {
+  width: 100%;
+  border: 2px solid rgba(255,255,255,0.08);
+  background: #0e4865;
+  color: var(--text);
+  font-size: 16px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+.container.contact-page .contact-form input::placeholder,
+.container.contact-page .contact-form textarea::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+.container.contact-page .contact-form input:focus,
+.container.contact-page .contact-form textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18);
+  background: #12577a;
+}
+
+.container.contact-page .contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.container.contact-page .contact-form .flat-button {
+  justify-self: end;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 3px;
+  padding: 10px 16px;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 2s, color .5s, transform .06s;
+}
+.container.contact-page .contact-form .flat-button:hover { background: var(--accent); color: #1a1a1a; }
+.container.contact-page .contact-form .flat-button:active { transform: translateY(1px); }
+
+.contact-form input[type='text'],
+.contact-form input[type='email'],
+.contact-form textarea {
+  width: 100%;
+  background: #145d80;
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 10px solid rgb(255, 255, 255);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  background: #1a6d97;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.25);
+}
+
+
+/* ===== Map panel (right) ===== */
+.container.contact-page .map-wrap {
+  min-width: 360px;
+  height: 520px;
+  background: var(--panel);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 14px 36px rgba(255, 254, 254, 0.854);
+  margin-bottom: 1000px;
+  margin-top: 100px;   /* ensure aligned to top */
+  margin-left: 90px;
+}
+
+.container.contact-page .leaflet-container {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: backInRight 0.8s 0.6s forwards;
+  filter: saturate(0.95);
+  border-radius: inherit;
+}
+
+/* Hide the old black overlay card entirely on Contact */
+.container.contact-page .info-map { display: none !important; }
+
+/* Loader (kept generic; adjust if needed) */
+.loader-active {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 60px; height: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .container.contact-page { grid-template-columns: 1fr; }
+  .container.contact-page .map-wrap { height: 420px; }
+}
